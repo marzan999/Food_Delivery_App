@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/model/data.dart';
+import 'package:food_delivery_app/widget/page3.dart';
 
 class Page2 extends StatelessWidget {
   final a = ProductInfo.generatedProductList();
@@ -60,9 +61,15 @@ class Page2 extends StatelessWidget {
                                 Icons.search,
                                 size: 35,
                               ),
-                              Icon(
-                                Icons.shopping_cart_checkout,
-                                size: 35,
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => Page3()));
+                                },
+                                child: Icon(
+                                  Icons.shopping_cart_checkout,
+                                  size: 35,
+                                ),
                               )
                             ],
                           )
