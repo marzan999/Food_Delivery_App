@@ -12,6 +12,22 @@ class _Page3State extends State<Page3> {
   int quantity = 0;
   int delivary = 20;
   int total = 0;
+  double totalOrder = 0;
+  // getTotalOrder() {
+  //   double totalP = 0;
+  //   for (var i = 0; i < a.length; i++) {
+  //     totalP = (a[i].marzan ?? a[i].price) as double;
+  //     setState(() {
+  //       totalOrder = totalP;
+  //       print("TOtal Order: $totalOrder");
+  //     });
+  //   }
+  // }
+
+  // void initState() {
+  //   getTotalOrder();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +108,7 @@ class _Page3State extends State<Page3> {
                                   Row(
                                     children: [
                                       Text(
-                                        a[index].price,
+                                        "   ${a[index].totalPrice ?? a[index].price}",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -119,6 +135,8 @@ class _Page3State extends State<Page3> {
                                             setState(() {
                                               if (a[index].quantity > 0) {
                                                 a[index].quantity--;
+                                                // print(' ${a[index].quantity}');
+                                                getTotalPrice();
                                               }
                                             });
                                           },
@@ -137,6 +155,13 @@ class _Page3State extends State<Page3> {
                                           onPressed: () {
                                             setState(() {
                                               a[index].quantity++;
+
+                                              a[index].totalPrice =
+                                                  a[index].quantity *
+                                                      a[index].price;
+                                              getTotalPrice();
+
+                                              print("${a[index].totalPrice}");
                                             });
                                           },
                                           child: Icon(Icons.add)),
@@ -169,7 +194,7 @@ class _Page3State extends State<Page3> {
                                   fontWeight: FontWeight.bold, fontSize: 30),
                             ),
                             Text(
-                              '\$$delivary',
+                              '$delivary',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 30),
                             )
@@ -184,7 +209,7 @@ class _Page3State extends State<Page3> {
                                   fontWeight: FontWeight.bold, fontSize: 30),
                             ),
                             Text(
-                              '\$$delivary',
+                              '$totalprice',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 30),
                             ),
@@ -193,17 +218,21 @@ class _Page3State extends State<Page3> {
                         SizedBox(
                           height: 15,
                         ),
-                        Container(
-                          height: 50,
-                          width: 200,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 19, 79, 128),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(
-                              child: Text(
-                            'Pay ' + '\$$total',
-                            style: TextStyle(color: Colors.white, fontSize: 25),
-                          )),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 50,
+                            width: 200,
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 19, 79, 128),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Center(
+                                child: Text(
+                              'Pay ' + "${totalprice + delivary}",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 25),
+                            )),
+                          ),
                         )
                       ],
                     ),
@@ -211,5 +240,25 @@ class _Page3State extends State<Page3> {
                 )),
           ],
         ));
+  }
+
+  double totalprice = 0;
+  getTotalPrice() {
+    double total = 0;
+    a.forEach((item) {
+      total += (item.totalPrice ?? item.price).toDouble();
+      item.marzan = total;
+    });
+    setState(() {
+      totalprice = total;
+
+      print(' output ${totalprice}');
+    });
+  }
+
+  @override
+  void initState() {
+    getTotalPrice();
+    super.initState;
   }
 }

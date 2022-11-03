@@ -242,7 +242,7 @@ class Page2 extends StatelessWidget {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      a[index].price +
+                                                      "${a[index].price}" +
                                                           '                 ',
                                                       style: TextStyle(
                                                           fontWeight:
