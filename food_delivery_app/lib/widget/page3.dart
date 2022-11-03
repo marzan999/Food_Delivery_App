@@ -108,7 +108,8 @@ class _Page3State extends State<Page3> {
                                   Row(
                                     children: [
                                       Text(
-                                        "   ${a[index].totalPrice ?? a[index].price}",
+                                        "${a[index].totalPrice ?? a[index].price}" +
+                                            ' tk',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -194,7 +195,7 @@ class _Page3State extends State<Page3> {
                                   fontWeight: FontWeight.bold, fontSize: 30),
                             ),
                             Text(
-                              '$delivary',
+                              '$delivary' + ' tk',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 30),
                             )
@@ -209,7 +210,7 @@ class _Page3State extends State<Page3> {
                                   fontWeight: FontWeight.bold, fontSize: 30),
                             ),
                             Text(
-                              '$totalprice',
+                              '$totalprice' + ' tk',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 30),
                             ),
@@ -221,14 +222,14 @@ class _Page3State extends State<Page3> {
                         GestureDetector(
                           onTap: () {},
                           child: Container(
-                            height: 50,
-                            width: 200,
+                            height: 60,
+                            width: 230,
                             decoration: BoxDecoration(
                                 color: Color.fromARGB(255, 19, 79, 128),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Center(
                                 child: Text(
-                              'Pay ' + "${totalprice + delivary}",
+                              'Pay ' + "${totalprice + delivary}" + ' tk',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 25),
                             )),
